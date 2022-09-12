@@ -1,7 +1,7 @@
 import {React, useEffect} from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
-const Putovanja = ({location, setLocation}) => {
+const Putovanja = ({setLocation, putovanja}) => {
 
   let curLocation = useLocation();
   // console.log(curLocation);
@@ -20,7 +20,7 @@ const Putovanja = ({location, setLocation}) => {
         </div>
         <div className="col-sm-3">
           <select className="form-select form-select-lg">
-            <option selected>Mesec...</option>
+            <option defaultValue={'Mesec'}>Mesec...</option>
             <option value="1">Oktobar</option>
             <option value="2">Novembar</option>
             <option value="3">Decembar</option>
@@ -28,7 +28,7 @@ const Putovanja = ({location, setLocation}) => {
         </div>
         <div className="col-sm-3">
           <select className="form-select form-select-lg">
-            <option selected>Sortiraj...</option>
+            <option defaultValue={'Sortiraj'}>Sortiraj...</option>
             <option value="1">Opadajuće</option>
             <option value="2">Rastuće</option>
           </select>
@@ -42,129 +42,26 @@ const Putovanja = ({location, setLocation}) => {
     <section className="container pregled-putovanja py-5">
       <div className="row row-cols-1 row-cols-md-3 g-4">
 
-        <div className="col">
-          <div className="card h-100">
-            <img src="img/dominikana.jpg" className="card-img-top" alt="..."/>
-            <div className="card-footer">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Destinacija: Dominikana</li>
-                <li className="list-group-item">Ocena:
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                </li>
-                <li className="list-group-item">Datum putovanja: 2.12.2022.</li>
-                <li className="list-group-item">Cena: 2500E</li>
-              </ul>
+        {putovanja.map((putovanje, idx) => {
+          return(
+            <div className="col" key={idx}>
+              <div className="card h-100">
+                <img src={'../img/' + putovanje.img} className="card-img-top" alt="..."/>
+                <div className="card-footer">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Destinacija: {putovanje.destinacija}</li>
+                    <li className="list-group-item">Ocena: {putovanje.ocena}</li>
+                    <li className="list-group-item">Datum putovanja: {putovanje.datumPolaska}</li>
+                    <li className="list-group-item">Cena: {putovanje.cena}</li>
+                  </ul>
+                </div>
+                <Link className="btn btn-danger m-2" to={`/detalji/${idx}`} >Detaljnije</Link>
+              </div>
             </div>
-            <button className="btn btn-danger m-2">Detaljnije</button>
-          </div>
-        </div>
-        <div className="col">
-          <div className="card h-100">
-            <img src="img/maldivi.jpg" className="card-img-top" alt="..."/>
-            <div className="card-footer">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Destinacija: Dominikana</li>
-                <li className="list-group-item">Ocena:
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                </li>
-                <li className="list-group-item">Datum putovanja: 2.12.2022.</li>
-                <li className="list-group-item">Cena: 2500E</li>
-              </ul>
-            </div>
-            <button className="btn btn-danger m-2">Detaljnije</button>
-          </div>
-        </div>
-        <div className="col">
-          <div className="card h-100">
-            <img src="img/uae.jpg" className="card-img-top" alt="..."/>
-            <div className="card-footer">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Destinacija: Dominikana</li>
-                <li className="list-group-item">Ocena:
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                </li>
-                <li className="list-group-item">Datum putovanja: 2.12.2022.</li>
-                <li className="list-group-item">Cena: 2500E</li>
-              </ul>
-            </div>
-            <button className="btn btn-danger m-2">Detaljnije</button>
-          </div>
-        </div>
-        <div className="col">
-          <div className="card h-100">
-            <img src="img/engleska.jpg" className="card-img-top" alt="..."/>
-            <div className="card-footer">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Destinacija: Dominikana</li>
-                <li className="list-group-item">Ocena:
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                </li>
-                <li className="list-group-item">Datum putovanja: 2.12.2022.</li>
-                <li className="list-group-item">Cena: 2500E</li>
-              </ul>
-            </div>
-            <button className="btn btn-danger m-2">Detaljnije</button>
-          </div>
-        </div>
-        <div className="col">
-          <div className="card h-100">
-            <img src="img/indonezija.jpg" className="card-img-top" alt="..."/>
-            <div className="card-footer">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Destinacija: Dominikana</li>
-                <li className="list-group-item">Ocena:
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                </li>
-                <li className="list-group-item">Datum putovanja: 2.12.2022.</li>
-                <li className="list-group-item">Cena: 2500E</li>
-              </ul>
-            </div>
-            <button className="btn btn-danger m-2">Detaljnije</button>
-          </div>
-        </div>
-        <div className="col">
-          <div className="card h-100">
-            <img src="img/italija.jpg" className="card-img-top" alt="..."/>
-            <div className="card-footer">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Destinacija: Dominikana</li>
-                <li className="list-group-item">Ocena:
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                  <i className="bi bi-star-fill"></i>
-                </li>
-                <li className="list-group-item">Datum putovanja: 2.12.2022.</li>
-                <li className="list-group-item">Cena: 2500E</li>
-              </ul>
-            </div>
-            <button className="btn btn-danger m-2">Detaljnije</button>
-          </div>
-        </div>
+          )
+        })}
 
-        
-        
+      
       </div>
     </section>
     </>
